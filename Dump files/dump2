@@ -1,0 +1,93 @@
+ const clingKeys = this.input.keyboard.addKeys({
+		'clingOn': Phaser.Input.Keyboard.KeyCodes.W,
+		'clingOff': Phaser.Input.Keyboard.KeyCodes.S
+		
+	   });
+	   //------------cliffhanging------------------------
+	 	
+		
+	   if(clingKeys['clingOn'].isDown )
+	   {
+		console.log('is clinging')
+		this.player.setAcceleration(0,0)	
+	   }
+	   if(clingKeys['clingOff'].isDown)
+	   {	
+			console.log('is not clinging')
+			this.player.setAcceleration(0,0)	
+	   }
+		
+		if(clingKeys['clingOn'].isDown && this.player.body.touching.left)
+			{
+				this.isClinging = true
+				this.player.setVelocityY(0,0),
+				this.player.setVelocityX(0,0),
+				this.player.anims.play('clingleft');
+				if (this.isClinging){
+					this.player.anims.play('left',false);
+				}
+			}
+			if(clingKeys['clingOn'].isDown && this.player.body.touching.right)
+			{
+				this.isClinging = true
+				this.player.setVelocityY(0,0),
+				this.player.setVelocityX(0,0),
+				this.player.anims.play('clingright');
+				if (this.isClinging){
+					this.player.anims.play('right',false);
+				}
+			}
+		
+				
+		if(clingKeys['clingOn'].isDown && this.physics.add.overlap(this.player, this.platforms)) 
+		{
+			this.player.setAcceleration(0,0)
+		}
+		
+		function cliffHang()
+		{
+			//
+			//isTouchingPlatform = true
+			//this.popUpMessage.text = `Press 'w' to cling`
+
+			if (clingKeys['clingOn'].isDown && this.player.body.touching.left && this.cursors.up.isDown)
+			{
+				this.sound.play('cling')
+   		 		
+					if(this.cursors.up.isDown)
+					{
+						climbUp();
+					}
+			}
+			else if (clingKeys['clingOn'].isDown && this.player.body.touching.right && this.cursors.up.isDown)
+			{
+				this.sound.play('cling')
+   		 		this.player.setVelocityY(-50)
+					if(this.cursors.up.isDown)
+					{
+						climbUp();
+					}
+			}
+			else if (clingKeys['clingOff'].isDown)
+			{
+				this.player.setAcceleration(0,50)
+				this.player.setVelocityY(50)
+			}
+		}
+		function climbUp(){
+			this.player.setAcceleration(0,-50)
+				this.player.setVelocityY(-50)
+		}
+		/*
+		else if(clingKeys['clingOff'].isDown && this.physics.add.overlap(this.player, this.platforms)) 
+		{
+			isClinging = true
+			this.player.setAcceleration(0,0)
+			cliffHang()
+		}
+		else if(!this.physics.add.overlap(this.player, this.platforms))
+		{
+			isTouchingPlatform = false
+		}
+		
+		*/
