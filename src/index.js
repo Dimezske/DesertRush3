@@ -4,10 +4,10 @@ import backgroundImg from './assets/desert-background.png';
 import groundSandBrokenImg from './assets/ground_sand_broken.png';
 import groundSandBrokenWall from './assets/ground_sand_broken_wall.png'
 import playerSpriteSheet from './assets/characterSheet.png';
-import Platforms from '../src/game/Platforms'
-import GameOver from './scenes/GameOver'
-import BootScene from './scenes/BootScene';
-import TitleScene from './scenes/TitleScene';
+import Platforms from './game/Platforms'
+import GameOver from '../scenes/GameOver'
+import BootScene from '../scenes/BootScene';
+import TitleScene from '../scenes/TitleScene';
 
 import jumpAudio from './assets/sfx/jump.wav';
 import powerupAudio from './assets/sfx/powerup.wav';

@@ -1,7 +1,7 @@
-import groundSandBrokenImg from '../assets/ground_sand_broken.png';
-import backgroundImg from '../assets/desert-background.png';
-import logoImg from '../assets/logo.png';
-import characterSheet from '../assets/characterSheet.png'
+import groundSandBrokenImg from '../src/assets/ground_sand_broken.png';
+import backgroundImg from '../src/assets/desert-background.png';
+import logoImg from '../src/assets/logo.png';
+import characterSheet from '../src/assets/characterSheet.png'
 import makeAnimations from '../helpers/animations';
 class BootScene extends Phaser.Scene {
     constructor(test) { // should this be scene?
@@ -44,7 +44,7 @@ class BootScene extends Phaser.Scene {
             //this.progressComplete = this.add.text(100, 200, '');
             this.progressComplete = this.add.text(500, 180, 'Loading complete press `ENTER!`', { fill: '#0f0' })
         });
-        //this.load.spritesheet('player', '../assets/characterSheet.png', {
+        //this.load.spritesheet('player', '../src/assets/characterSheet.png', {
         //    frameWidth: 60,
         //    frameHeight: 80
         //});
