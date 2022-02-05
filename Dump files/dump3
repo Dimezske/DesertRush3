@@ -1,0 +1,65 @@
+		
+        
+        this.cursors = this.input.keyboard.createCursorKeys()
+        this.player = this.physics.add.existing(new Player(this, 100, 100));
+		this.player.setScale(0.7)
+        
+        this.platforms = this.physics.add.staticGroup()
+
+        this.physics.add.collider(this.platforms, this.player)
+            this.player.body.setBounce(0.2);
+		    this.player.body.setCollideWorldBounds(false);
+        
+            //this.cameras.main.startFollow(this.player)
+           //this.cameras.main.setDeadzone(this.scale.width * 1.5)
+        
+           
+//create()
+//-------------------------------
+if (!this.player)
+		{
+			return
+		}
+		
+		this.platforms.children.iterate(child => {
+			const platform = child
+
+			const scrollY = this.cameras.main.scrollY
+			if (platform.y >= scrollY + 700)
+			{
+				platform.y = scrollY - Phaser.Math.Between(50, 90)
+				platform.body.updateFromGameObject()
+				this.addBallAbove(platform),
+				this.addGemAbove(platform).setScale(0.7)
+			}
+		})
+        //--------------------Movement--------------------------
+
+		if (this.cursors.left.isDown)
+		{
+    		this.player.body.setVelocityX(-160);
+
+    		//this.player.anims.play('left', true);
+
+			//this.schimitar.anims.play('left');
+		}
+		else if (this.cursors.right.isDown)
+		{
+    		this.player.body.setVelocityX(160);
+
+			//this.player.anims.play('right', true);
+
+			//this.schimitar.anims.play('right');
+		}
+		else
+		{
+    		this.player.body.setVelocityX(0);
+
+    		//this.player.enable.anims.play('turn');
+		}
+
+		if (this.cursors.up.isDown && this.player.body.touching.down)
+		{
+			this.sound.play('jump')
+   		 	this.player.body.setVelocityY(-330);
+		}
